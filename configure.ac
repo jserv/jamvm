@@ -282,7 +282,7 @@ fi
 
 dnl Checks for header files.
 AC_HEADER_STDC
-AC_CHECK_HEADERS(sys/time.h unistd.h endian.h sys/param.h locale.h alloca.h)
+AC_CHECK_HEADERS(sys/time.h unistd.h endian.h sys/param.h locale.h alloca.h fenv.h)
 
 if test "$enable_zip" != no; then
     AC_CHECK_HEADER(zlib.h,,AC_MSG_ERROR(zlib.h is missing))

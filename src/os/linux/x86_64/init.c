@@ -19,7 +19,11 @@
  * Foundation, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#ifdef __linux__
+#include "config.h"
+
+#if defined(HAVE_FENV_H)
+#include <fenv.h>
+#else
 #include <fpu_control.h>
 #endif
 
@@ -30,7 +34,14 @@
 */
 
 void setDoublePrecision() {
-#ifdef __linux__
+#if defined(HAVE_FENV_H)
+    fenv_t fenv;
+
+    fegetenv(&fenv);
+    fenv.__control_word &= ~0x300; /*_FPU_EXTENDED */
+    fenv.__control_word |= 0x200; /*_FPU_DOUBLE */
+    fesetenv(&fenv);
+#else
     fpu_control_t cw;
 
     _FPU_GETCW(cw);
