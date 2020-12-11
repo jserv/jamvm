@@ -666,6 +666,35 @@ void JVM_SetClassSigners(JNIEnv *env, jclass cls, jobjectArray signers) {
 }
 
 
+/* JVM_GetResourceLookupCacheURLs
+   is part of the
+   JDK-8061651 JDK8u API
+*/
+
+jobjectArray JVM_GetResourceLookupCacheURLs(JNIEnv *env, jobject loader) {
+    return NULL; // tell OpenJDK 8 that the lookup cache API is unavailable
+}
+
+/* JVM_GetResourceLookupCache
+   is unused however it is part of the
+   JDK-8061651 JDK8u API
+*/
+
+jintArray JVM_GetResourceLookupCache(JNIEnv *env, jobject loader, const char *resource_name) {
+    UNIMPLEMENTED("JVM_GetResourceLookupCache");
+    return 0;
+}
+
+/* JVM_KnownToNotExist
+   is unused however it is part of the
+   JDK-8061651 JDK8u API
+*/
+
+jboolean JVM_KnownToNotExist(JNIEnv *env, jobject loader, const char *classname) {
+    UNIMPLEMENTED("JVM_KnownToNotExist");
+    return 0;
+}
+
 /* JVM_GetProtectionDomain */
 
 jobject JVM_GetProtectionDomain(JNIEnv *env, jclass cls) {
@@ -2958,6 +2987,24 @@ void JVM_GetVersionInfo(JNIEnv *env, jvm_version_info *info, size_t info_size) {
     info->jvm_version = ((VERSION_MAJOR & 0xff) << 24) |
                         ((VERSION_MINOR & 0xff) << 16) |
                          (VERSION_MICRO & 0xff);
+}
+
+
+/* JVM_GetTemporaryDirectory
+ * Return the temporary directory that the VM uses for the attach
+ * and perf data files.
+ *
+ * It is important that this directory is well-known and the
+ * same for all VM instances. It cannot be affected by configuration
+ * variables such as java.io.tmpdir.
+ *
+ * JamVM do not support the jvmstat framework thus this is left unimplemented.
+ */
+
+jstring JVM_GetTemporaryDirectory(JNIEnv *env) {
+    UNIMPLEMENTED("JVM_GetTemporaryDirectory");
+
+    return 0;
 }
 
 
