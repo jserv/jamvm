@@ -154,6 +154,9 @@ jint JVM_GetInterfaceVersion() {
     return JVM_INTERFACE_VERSION;
 }
 
+void JVM_BeforeHalt() {
+
+}
 
 /* JVM_CurrentTimeMillis */
 
@@ -1962,6 +1965,10 @@ jint JVM_GetArrayLength(JNIEnv *env, jobject arr) {
 }
 
 
+jboolean JVM_IsUseContainerSupport() {
+    return FALSE;
+}
+
 /* JVM_GetArrayElement */
 
 jobject JVM_GetArrayElement(JNIEnv *env, jobject arr, jint index) {
@@ -1998,7 +2005,6 @@ jobject JVM_GetArrayElement(JNIEnv *env, jobject arr, jint index) {
         }
     }
 }
-
 
 /* JVM_GetPrimitiveArrayElement */
 
