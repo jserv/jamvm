@@ -77,7 +77,7 @@ versions of JamVM also includes stubs for common method signatures.
 The following platforms/architectures are recognised by configure.  Those
 marked with * must be configured to use libffi.
 
-- Linux: x86, x86_64, ARM, PowerPC, PowerPC64(*), MIPS, HPPA
+- Linux: x86, x86_64, ARM, ARM64, PowerPC, PowerPC64(*), MIPS, HPPA
 - FreeBSD: x86, x86_64, ARM, PowerPC, PowerPC64(*), SPARC(*)
 - OpenBSD: x86, x86_64, ARM, PowerPC, PowerPC64(*), SPARC(*)
 - Mac OS X/Darwin: x86, x86_64, ARM, PowerPC, PowerPC64

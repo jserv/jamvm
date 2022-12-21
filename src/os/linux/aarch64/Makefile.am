@@ -1,6 +1,8 @@
 ##
-## Copyright (C) 2003, 2004, 2005, 2006, 2007
+## Copyright (C) 2003, 2004, 2005, 2006, 2007, 2010, 2011, 2012
 ## Robert Lougher <rob@jamvm.org.uk>.
+##
+## File added by Simon South <simon@simonsouth.net>.
 ##
 ## This file is part of JamVM.
 ##
@@ -19,4 +21,8 @@
 ## Foundation, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 ##
 
-EXTRA_DIST = powerpc.h arm.h i386.h x86_64.h parisc.h mips.h sparc.h aarch64.h
+noinst_LTLIBRARIES = libnative.la
+libnative_la_SOURCES = init.c dll_md.c callNative.S
+
+AM_CPPFLAGS = -I$(top_builddir)/src -I$(top_srcdir)/src
+AM_CCASFLAGS = -I$(top_builddir)/src
