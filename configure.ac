@@ -214,35 +214,12 @@ AC_ARG_ENABLE(md-stubs,
 AC_ARG_ENABLE(profile-stubs,
     [AS_HELP_STRING(--enable-profile-stubs,JNI stubs support profiling)],,)
 
-AC_ARG_WITH(java-runtime-library,
-    [AS_HELP_STRING(--with-java-runtime-library=[[[gnuclasspath|openjdk6|openjdk7|openjdk8|openjdk9]]],
-                    which Java runtime library interface to use (default gnuclasspath))],
-    [if test "$withval" != gnuclasspath -a "$withval" != openjdk6 -a \
-             "$withval" != openjdk7 -a "$withval" != openjdk8 -a \
-             "$withval" != openjdk9; then
-        AC_MSG_ERROR($withval Java runtime library is not supported)
-     fi],
-    [with_java_runtime_library=gnuclasspath])
-
-AC_ARG_WITH(classpath-install-dir,
-    [AS_HELP_STRING(--with-classpath-install-dir=<dir>,installation directory of GNU classpath
-                   (default /usr/local/classpath))],,
-    [with_classpath_install_dir=/usr/local/classpath])
-
-AC_DEFINE_UNQUOTED(CLASSPATH_INSTALL_DIR, "$with_classpath_install_dir",
-    [GNU Classpath installation directory (prefix)])
-
-AC_SUBST(with_classpath_install_dir)
-
 if test "$prefix" = "NONE"; then
     install_dir=$ac_default_prefix
 else
     install_dir=$prefix
 fi
 AC_DEFINE_UNQUOTED(INSTALL_DIR, "$install_dir", [Installation directory (prefix)])
-
-AC_ARG_ENABLE(zip,
-    [AS_HELP_STRING(--disable-zip,turn-off zip support in the bootstrap loader)],,)
 
 AC_ARG_ENABLE(tls,
     [AS_HELP_STRING(--enable-tls,use thread-local-storage (enabled by default if supported by compiler))],,)
@@ -254,8 +231,6 @@ AC_PROG_LIBTOOL
 dnl Checks for programs.
 AC_PROG_CC
 AM_PROG_AS
-
-AC_CHECK_PROGS(JAVAC, ecj jikes "gcj -C" javac)
 
 dnl Checks for libraries.
 
@@ -272,9 +247,7 @@ if test "$libdl_needed" != no; then
     AC_CHECK_LIB(dl,dlopen,,AC_MSG_ERROR(libdl is missing))
 fi
 
-if test "$enable_zip" != no; then
-    AC_CHECK_LIB(z,inflate,,AC_MSG_ERROR(zlib is missing))
-fi
+AC_CHECK_LIB(z,inflate,,AC_MSG_ERROR(zlib is missing))
 
 if test "$enable_ffi" != no; then
     AC_CHECK_LIB(ffi,ffi_call,,AC_MSG_ERROR(libffi is missing))
@@ -284,25 +257,13 @@ dnl Checks for header files.
 AC_HEADER_STDC
 AC_CHECK_HEADERS(sys/time.h unistd.h endian.h sys/param.h locale.h alloca.h fenv.h)
 
-if test "$enable_zip" != no; then
-    AC_CHECK_HEADER(zlib.h,,AC_MSG_ERROR(zlib.h is missing))
-fi
+AC_CHECK_HEADER(zlib.h,,AC_MSG_ERROR(zlib.h is missing))
 
 if test "$enable_ffi" != no; then
     AC_CHECK_HEADER(ffi.h,,AC_MSG_ERROR(ffi.h is missing))
 fi
 
-if test "$enable_zip" != no; then
-    AC_DEFINE([USE_ZIP],1,[use zip])
-    use_zip_yes=
-    use_zip_no='#'
-else
-    use_zip_yes='#'
-    use_zip_no=
-fi
-
-AC_SUBST(use_zip_yes)
-AC_SUBST(use_zip_no)
+AC_DEFINE([USE_ZIP],1,[use zip])
 
 if test "$enable_ffi" != no; then
     AC_DEFINE([USE_FFI],1,[use FFI])
@@ -347,30 +308,15 @@ fi
 
 dnl configure class-library support
 
-if test "$with_java_runtime_library" != gnuclasspath; then
-    ver=`echo "$with_java_runtime_library" | $SED 's/^openjdk\([[0-9]]\)$/\1/'`
-    AC_DEFINE_UNQUOTED([OPENJDK_VERSION],$ver,[OpenJDK class-library])
-    classlib=openjdk
-else
-    classlib=gnuclasspath
-fi
+AC_DEFINE_UNQUOTED([OPENJDK_VERSION],8,[OpenJDK class-library])
+classlib=openjdk
 
 AC_SUBST(classlib)
 
-case "$with_java_runtime_library" in
-    gnuclasspath | openjdk6 )
-        AC_DEFINE([SHARED_CHAR_BUFFERS],1,
-                  [java.lang.String uses shared char buffers]) ;;
-
-    openjdk7 )
-        AC_DEFINE([JSR292],1,[VM support for JSR292 (invokedynamic)]) ;;
-
-    openjdk8 | openjdk9 )
-        AC_DEFINE([JSR292],1,[VM support for JSR292 (invokedynamic)])
-        AC_DEFINE([JSR308],1,[VM support for JSR308 (type annotations)])
-        AC_DEFINE([JSR335],1,[VM support for JSR335 (lambda expressions)])
-        AC_DEFINE([JSR901],1,[VM support for JSR901 (method parameter reflection)]) ;;
-esac
+AC_DEFINE([JSR292],1,[VM support for JSR292 (invokedynamic)])
+AC_DEFINE([JSR308],1,[VM support for JSR308 (type annotations)])
+AC_DEFINE([JSR335],1,[VM support for JSR335 (lambda expressions)])
+AC_DEFINE([JSR901],1,[VM support for JSR901 (method parameter reflection)])
 
 dnl split version into separate numbers
 major=`echo "$VERSION" | $SED 's/^\([[0-9]][[0-9]]*\)\.[[0-9]][[0-9]]*\.[[0-9]][[0-9]]*.*$/\1/'`
@@ -422,21 +368,7 @@ AC_CONFIG_FILES(
     src/os/bsd/x86_64/Makefile \
     src/os/bsd/sparc/Makefile \
     src/classlib/Makefile \
-    src/classlib/openjdk/Makefile \
-    src/classlib/gnuclasspath/Makefile \
-    src/classlib/gnuclasspath/lib/Makefile \
-    src/classlib/gnuclasspath/lib/java/Makefile \
-    src/classlib/gnuclasspath/lib/java/lang/Makefile \
-    src/classlib/gnuclasspath/lib/jamvm/Makefile \
-    src/classlib/gnuclasspath/lib/jamvm/java/Makefile \
-    src/classlib/gnuclasspath/lib/jamvm/java/lang/Makefile \
-    src/classlib/gnuclasspath/lib/java/lang/reflect/Makefile \
-    src/classlib/gnuclasspath/lib/java/security/Makefile \
-    src/classlib/gnuclasspath/lib/gnu/Makefile \
-    src/classlib/gnuclasspath/lib/sun/reflect/annotation/Makefile \
-    src/classlib/gnuclasspath/lib/sun/reflect/Makefile \
-    src/classlib/gnuclasspath/lib/sun/Makefile \
-    src/classlib/gnuclasspath/lib/gnu/classpath/Makefile)
+    src/classlib/openjdk/Makefile)
 
 AC_OUTPUT
 
