@@ -243,8 +243,6 @@ AC_CHECK_HEADERS(sys/time.h unistd.h endian.h sys/param.h locale.h alloca.h fenv
 
 AC_CHECK_HEADER(zlib.h,,AC_MSG_ERROR(zlib.h is missing))
 
-AC_DEFINE([USE_ZIP],1,[use zip])
-
 if test "$enable_md_stubs" != no; then
     AC_DEFINE([USE_MD_STUBS],1,[use machine-dependent JNI stubs])
 fi

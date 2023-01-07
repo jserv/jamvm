@@ -32,11 +32,7 @@
 #include "thread.h"
 #include "classlib.h"
 
-#ifdef USE_ZIP
 #define BCP_MESSAGE "<jar/zip files and directories separated by :>"
-#else
-#define BCP_MESSAGE "<directories separated by :>"
-#endif
 
 void showNonStandardOptions() {
     printf("  -Xbootclasspath:%s\n", BCP_MESSAGE);

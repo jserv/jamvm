@@ -23,7 +23,6 @@
 .text
 .align  2
 .globl _callJNIMethod
-//.type   callJNIMethod,function
 
 /*
  * Arguments passed in:
