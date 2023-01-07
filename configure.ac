@@ -26,7 +26,7 @@ AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR(src/jam.c)
 AC_CONFIG_HEADERS([src/config.h])
 AC_PREFIX_DEFAULT(/usr/local/jamvm)
-AM_INIT_AUTOMAKE()
+AM_INIT_AUTOMAKE([tar-ustar foreign])
 
 AC_CANONICAL_HOST
 
