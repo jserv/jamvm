@@ -6,6 +6,17 @@ DIE=0
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
 
+# On macOS, all commands have been installed with the prefix "g" via brew
+# installation.
+# See https://formulae.brew.sh/formula/libtool
+case "$(uname -sr)" in
+  Darwin*)
+    export PATH="$(brew --prefix)/opt/libtool/libexec/gnubin:$PATH"
+    ;;
+  *)
+    ;;
+esac
+
 (libtoolize --version) < /dev/null > /dev/null 2>&1 || {
   echo
   echo "**Error**: You must have \`libtool' installed to compile JamVM."
