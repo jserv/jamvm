@@ -45,11 +45,12 @@ a native method.  For most platform/architectures this is provided by
 highly-efficient hand-written native assembly code.
 
 The following platforms/architectures are recognized by `configure`.
-
-- Linux: x86, x86-64, ARM, ARM64
-- FreeBSD: x86, x86-64, ARM
-- OpenBSD: x86, x86-64, ARM
-- macOS/Darwin: x86-64, ARM
+| Operating System | Microprocessor Family   |
+|------------------|-------------------------|
+| Linux            | x86, x86-64, Arm, Arm64 |
+| FreeBSD          | x86, x86-64, Arm        |
+| OpenBSD          | x86, x86-64, Arm        |
+| macOS (Darwin)   | x86-64, Arm             |
 
 ## Features
 
