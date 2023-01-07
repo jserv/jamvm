@@ -207,9 +207,9 @@ OpenJDK Runtime Environment (build 1.8.0_352-8u352-ga-1~20.04-b08)
 JamVM (build 2.0.1-devel, inline-threaded interpreter with stack-caching)
 ```
 
-## Copyright
+## License
 
 `jamvm` is available under GNU General Public License version 2.
-Use of this source code is governed by the license that can be found in the [COPYING](COPYING) file.
+Use of this source code is governed by the GNU GPL that can be found in the [COPYING](COPYING) file.
 
-Robert Lougher <rob@jamvm.org.uk>
+This project is developed by Robert Lougher and contributors.
