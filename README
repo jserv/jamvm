@@ -1,7 +1,5 @@
-JamVM 2.0.0
-===========
-
-Welcome to the twenty-eighth release of JamVM!
+JamVM 2 + OpenJDK
+=================
 
 JamVM is an open-source Java Virtual Machine that aims to support the
 latest version of the JVM specification, while at the same time being
@@ -11,49 +9,26 @@ Class Libraries
 ===============
 
 JamVM must be used in conjunction with a Java class-library to make
-a full Java Runtime Environment.  Compatible class-libraries are GNU
-Classpath or the class-library from OpenJDK.
+a full Java Runtime Environment along with the class-library from
+OpenJDK.
 
-GNU Classpath
--------------
-
-GNU Classpath is a community-driven reimplementation of the Java
-class-libraries.  For many years it was the only library supported by
-JamVM.  Since the open-sourcing of Java, development of GNU Classpath
-has slowed but it is still active and maintained.  The latest release
-is 0.99, released on 16th March 2012.
-
-When configured for GNU Classpath, JamVM provides a shared library
-(libjvm.so) for use with the JNI Invocation API, and a standalone
-executable (jamvm) to run Java programs.
-
-GNU Classpath is mostly Java 1.5 compliant, with some APIs from Java 1.6.
-Although JamVM supports Java 7 and Java 8, these features are disabled
-when used with GNU Classpath.  GNU Classpath, however, is much smaller
-than OpenJDK, which makes it suitable for embedded systems.
-
-By default, if no class-library is specified when configuring JamVM,
-JamVM is built to use GNU Classpath. 
-
-OpenJDK/IcedTea
----------------
+OpenJDK
+-------
 
 OpenJDK is the official open-source implementation of the JDK resulting
 from the open-sourcing of Java in 2007.  It consists of a class-library,
 a virtual machine (HotSpot) and a java compiler (plus other tools).
 
-JamVM is compatible with the class-library from OpenJDK 6, 7 and 8 (the
-latest).  When configured for use with OpenJDK, JamVM provides a
-shared library (libjvm.so) which can be used to replace the libjvm.so
-containing HotSpot.  The existing OpenJDK launcher (java) is used, which
+JamVM is compatible with the class-library from OpenJDK 8. JamVM provides
+a shared library (libjvm.so) which can be used to replace the libjvm.so
+containing HotSpot. The existing OpenJDK launcher (java) is used, which
 now runs JamVM.
 
-IcedTea is a build harness for OpenJDK that initially replaced encumbered
-parts of OpenJDK with free components.  In addition to HotSpot, IcedTea
-also packages and supports alternative virtual machines such as JamVM.  To
-use JamVM, the -jamvm option is given on the java command line.  This
-directs the launcher to load the libjvm.so from the jamvm directory rather
-than the standard server or client directory.
+In addition to HotSpot, OpenJDK also packages and supports alternative
+virtual machines such as JamVM.  To use JamVM, the -XXaltjvm=jamvm option
+is given on the java command line.  This directs the launcher to load the
+libjvm.so from the jamvm directory rather than the standard server or
+client directory.
 
 The easiest way to get OpenJDK/IcedTea is to install a pre-built package
 for your system.  You can then replace HotSpot or the existing JamVM library
@@ -144,8 +119,6 @@ particular order, is given below.
 - JamVM is written in C, with a small amount of platform dependent
   assembler, and is easily portable to other architectures.
 
-
 That's it!
 
 Robert Lougher <rob@jamvm.org.uk>
-30th July 2014.
