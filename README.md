@@ -173,7 +173,7 @@ If installing into OpenJDK, the default HotSpot libjvm.so can be overwritten
 by JamVM's libjvm.so.  When java is executed it will now run JamVM (if
 HotSpot is still required you can create a copy of OpenJDK, and overwrite
 the libjvm.so in the copy).  HotSpot will be in either the client or server
-directory, e.g. `<openjdk-path>/jre/lib/amd64/server`.
+directory, e.g. `<OpenJDK_PATH>/jre/lib/amd64/server`.
 
 Do the copy (as root), e.g.:
 ```shell
@@ -191,6 +191,20 @@ Reference output:
 openjdk version "1.8.0_352"
 OpenJDK Runtime Environment (build 1.8.0_352-8u352-ga-1~20.04-b08)
 JamVM (build 2.0.1-devel, inline-threaded interpreter)
+```
+
+For Debian/Ubuntu Linux Aarch64, the steps are as following:
+```shell
+sudo mkdir -p /usr/lib/jvm/java-8-openjdk-arm64/jre/lib/aarch64/jamvm
+sudo cp /usr/local/jamvm/lib/libjvm.so /usr/lib/jvm/java-8-openjdk-arm64/jre/lib/aarch64/jamvm
+/usr/lib/jvm/java-8-openjdk-arm64/jre/bin/java -XXaltjvm=jamvm -version
+```
+
+Reference output:
+```
+openjdk version "1.8.0_352"
+OpenJDK Runtime Environment (build 1.8.0_352-8u352-ga-1~20.04-b08)
+JamVM (build 2.0.1-devel, inline-threaded interpreter with stack-caching)
 ```
 
 ## Copyright
