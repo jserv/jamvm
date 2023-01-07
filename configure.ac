@@ -43,9 +43,6 @@ arm*-*-linux*) host_cpu=arm host_os=linux interp_cflags=-marm ;;
 arm*-*-openbsd*) host_cpu=arm host_os=bsd libdl_needed=no ;;
 arm*-*-freebsd*) host_cpu=arm host_os=bsd libdl_needed=no ;;
 aarch64*-*-linux*) host_cpu=aarch64 host_os=linux ;;
-powerpc*-*-linux*) host_cpu=powerpc host_os=linux ;;
-powerpc*-*-openbsd*) host_cpu=powerpc host_os=bsd libdl_needed=no ;;
-powerpc*-*-freebsd*) host_cpu=powerpc host_os=bsd libdl_needed=no ;;
 *) AC_MSG_ERROR($host not supported) ;;
 esac
 
@@ -137,10 +134,8 @@ AC_ARG_ENABLE(int-caching,
 
 AC_ARG_ENABLE(int-prefetch,
     [AS_HELP_STRING(--enable-int-prefetch,enable prefetching version of the interpreter
-                   (by default enabled on powerpc, disabled otherwise))],,
-    [if test "$host_cpu" != powerpc; then
-         enable_int_prefetch=no
-     fi])
+                   (disabled by default))],,
+    [enable_int_prefetch=no])
 
 AC_ARG_ENABLE(runtime-reloc-checks,
     [AS_HELP_STRING(--enable-runtime-reloc-checks,compute relocatability at runtime
@@ -149,10 +144,10 @@ AC_ARG_ENABLE(runtime-reloc-checks,
 
 AC_ARG_ENABLE(int-inlining,
     [AS_HELP_STRING(--enable-int-inlining,enable inline threaded version of the interpreter
-                   (by default enabled on x86_64, i386, powerpc, arm and aarch64,
+                   (by default enabled on x86_64, i386, arm and aarch64,
                     disabled otherwise))],,
     [if test "$host_cpu" = x86_64 -o "$host_cpu" = i386 -o "$host_cpu" = x86 -o \
-             "$host_cpu" = powerpc -o "$host_cpu" = arm -o "$host_cpu" = aarch64; then
+             "$host_cpu" = arm -o "$host_cpu" = aarch64; then
          enable_int_inlining=yes
        else
          enable_int_inlining=no
@@ -319,14 +314,12 @@ AC_CONFIG_FILES(
     src/os/linux/Makefile \
     src/os/darwin/Makefile \
     src/os/bsd/Makefile \
-    src/os/linux/powerpc/Makefile \
     src/os/linux/arm/Makefile \
     src/os/linux/i386/Makefile \
     src/os/linux/x86_64/Makefile \
     src/os/linux/aarch64/Makefile \
     src/os/darwin/x86_64/Makefile \
     src/os/darwin/arm/Makefile \
-    src/os/bsd/powerpc/Makefile \
     src/os/bsd/arm/Makefile \
     src/os/bsd/i386/Makefile \
     src/os/bsd/x86_64/Makefile \

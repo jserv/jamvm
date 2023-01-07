@@ -44,12 +44,11 @@ dependent.  This is needed by JamVM when constructing a call frame to invoke
 a native method.  For most platform/architectures this is provided by
 highly-efficient hand-written native assembly code.
 
-The following platforms/architectures are recognised by configure.  Those
-marked with * must be configured to use libffi.
+The following platforms/architectures are recognized by `configure`.
 
-- Linux: x86, x86-64, ARM, ARM64, PowerPC, PowerPC64(*)
-- FreeBSD: x86, x86-64, ARM, PowerPC, PowerPC64(*)
-- OpenBSD: x86, x86-64, ARM, PowerPC, PowerPC64(*)
+- Linux: x86, x86-64, ARM, ARM64
+- FreeBSD: x86, x86-64, ARM
+- OpenBSD: x86, x86-64, ARM
 - macOS/Darwin: x86-64, ARM
 
 ## Features
