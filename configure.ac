@@ -32,11 +32,9 @@ AC_CANONICAL_HOST
 
 case "$host" in
 i[[3456]]86-*-linux*) host_cpu=i386 host_os=linux ;;
-i[[3456]]86-*-kfreebsd*) host_cpu=i386 host_os=linux ;;
 arm*-*-darwin*) host_cpu=arm host_os=darwin libdl_needed=no ;;
 i386-*-openbsd*) host_os=bsd libdl_needed=no ;;
 i386-*-freebsd*) host_os=bsd libdl_needed=no ;;
-i386-*-solaris*) host_cpu=x86 host_os=solaris ;;
 x86_64-*-linux*) host_os=linux ;;
 x86_64-*-darwin*) host_os=darwin ;;
 x86_64-*-openbsd*) host_os=bsd libdl_needed=no ;;
@@ -321,8 +319,6 @@ AC_CONFIG_FILES(
     src/os/linux/Makefile \
     src/os/darwin/Makefile \
     src/os/bsd/Makefile \
-    src/os/solaris/Makefile \
-    src/os/solaris/x86/Makefile \
     src/os/linux/powerpc/Makefile \
     src/os/linux/arm/Makefile \
     src/os/linux/i386/Makefile \
