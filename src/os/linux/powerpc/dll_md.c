@@ -21,7 +21,6 @@
 
 #include "../../../jam.h"
 
-#ifndef USE_FFI
 #include <stdio.h>
 
 /* The PowerPC calling convention passes the first 8 integer
@@ -75,4 +74,3 @@ int nativeExtraArg(MethodBlock *mb) {
 
     return margs;
 }
-#endif

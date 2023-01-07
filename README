@@ -44,10 +44,7 @@ specific definitions are required (memory barriers, etc.).  Finally, the
 native calling convention (or ABI) is both platform and architecture
 dependent.  This is needed by JamVM when constructing a call frame to invoke
 a native method.  For most platform/architectures this is provided by
-highly-efficient hand-written native assembler, although libffi is also
-supported for all platforms (specified by --with-libffi when configuring).
-Libffi is less efficient than the hand-written assembler although recent
-versions of JamVM also includes stubs for common method signatures.
+highly-efficient hand-written native assembler.
 
 The following platforms/architectures are recognised by configure.  Those
 marked with * must be configured to use libffi.

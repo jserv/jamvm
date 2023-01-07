@@ -21,7 +21,6 @@
 
 #include  "config.h"
 
-#ifndef USE_FFI
         .section ".text"
         .align 2
         .globl callJNIMethod
@@ -280,7 +279,6 @@ return:
         
         mr 1,11
         blr
-#endif
 
 #if defined(__linux__) && defined(__ELF__)
 .section .note.GNU-stack,"",%progbits

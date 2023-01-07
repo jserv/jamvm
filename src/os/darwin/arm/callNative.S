@@ -29,10 +29,8 @@
    Most ARM Linux distributions have made this move.
 */
 
-#ifndef USE_FFI
 #ifdef __ARM_EABI__
 #include "callNativeEABI.S"
 #else
 #include "callNativeOABI.S"
-#endif
 #endif

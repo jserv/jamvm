@@ -21,7 +21,6 @@
 
 #include "config.h"
 
-#ifndef USE_FFI
         .text
         .arch armv8-a
         .align 2
@@ -209,4 +208,3 @@ return:
         ldp     x19, x20, [x29, #16]
         ldp     x29, x30, [sp], #32
         ret
-#endif

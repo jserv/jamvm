@@ -32,7 +32,7 @@ libcore_la_SOURCES = alloc.c alloc.h cast.c class.c dll.c excep.c execute.c \
                      frame.h hash.c hash.h jam.h jni.c lock.c lock.h \
                      natives.c reflect.c resolve.c sig.h string.c thread.c \
                      thread.h utf8.c zip.c zip.h properties.c natives.h \
-                     dll_ffi.c access.c frame.c init.c hooks.c class.h \
+                     access.c frame.c init.c hooks.c class.h \
                      symbol.c symbol.h excep.h shutdown.c time.c reflect.h \
                      jni-internal.h properties.h sig.c stubs.h stubs.c \
                      jni-stubs.c annotations.h

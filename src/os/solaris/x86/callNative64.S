@@ -20,7 +20,7 @@
 
 #include  "config.h"
 
-#if !defined(USE_FFI) && defined(__x86_64__)
+#if defined(__x86_64__)
 .text
 .align  2
 .global callJNIMethod

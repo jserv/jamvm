@@ -21,7 +21,6 @@
 
 #include "../../../jam.h"
 
-#ifndef USE_FFI
 #include <stdio.h>
 
 /*
@@ -41,4 +40,3 @@ int nativeExtraArg(MethodBlock *mb) {
 
     return params;
 }
-#endif

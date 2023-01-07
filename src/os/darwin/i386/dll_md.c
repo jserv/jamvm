@@ -21,7 +21,6 @@
 
 #include "../../../jam.h"
 
-#ifndef USE_FFI
 #include <string.h>
 #include "../../../sig.h"
 
@@ -118,4 +117,3 @@ u4 *callJNIMethod(void *env, Class *class, char *sig, int ret_type,
     asm volatile ("addl %0,%%esp" :: "r" (aligned * sizeof(u4)) : "cc", "sp");
     return ostack;
 }
-#endif

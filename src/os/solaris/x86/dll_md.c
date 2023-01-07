@@ -20,7 +20,6 @@
 
 #include "../../../jam.h"
 
-#ifndef USE_FFI
 #ifdef __x86_64__
 int nativeExtraArg(MethodBlock *mb) {
     char *sig = mb->type;
@@ -148,5 +147,4 @@ u4 *callJNIMethod(void *env, Class *class, char *sig, int ret_type,
                   : "cc", "sp");
     return ostack;
 }
-#endif
 #endif

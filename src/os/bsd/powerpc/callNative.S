@@ -21,7 +21,6 @@
 
 #include  "config.h"
 
-#ifndef USE_FFI
         .section ".text"
         .align 2
         .globl callJNIMethod
@@ -280,4 +279,3 @@ return:
         
         mr 1,11
         blr
-#endif

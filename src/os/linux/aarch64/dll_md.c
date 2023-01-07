@@ -22,8 +22,6 @@
 
 #include "jam.h"
 
-#ifndef USE_FFI
-
 int nativeExtraArg(MethodBlock *mb) {
     char *sig = mb->type;
     int stack_args = 0;
@@ -55,5 +53,3 @@ int nativeExtraArg(MethodBlock *mb) {
     /* Ensure the stack remains 16 byte aligned. */
     return (stack_args + 15) & ~15;
 }
-
-#endif
