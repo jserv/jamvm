@@ -40,8 +40,6 @@ i386-*-freebsd*) host_os=bsd libdl_needed=no ;;
 i386-*-solaris*) host_cpu=x86 host_os=solaris ;;
 x86_64-*-linux*) host_os=linux ;;
 x86_64-*-darwin*) host_os=darwin ;;
-hppa*-*-linux*) host_cpu=parisc host_os=linux ;;
-mips*-*-linux*) host_cpu=mips host_os=linux ;;
 x86_64-*-openbsd*) host_os=bsd libdl_needed=no ;;
 x86_64-*-freebsd*) host_os=bsd libdl_needed=no ;;
 arm*-*-linux*) host_cpu=arm host_os=linux interp_cflags=-marm ;;
@@ -52,8 +50,6 @@ powerpc*-*-linux*) host_cpu=powerpc host_os=linux ;;
 powerpc*-*-openbsd*) host_cpu=powerpc host_os=bsd libdl_needed=no ;;
 powerpc*-*-freebsd*) host_cpu=powerpc host_os=bsd libdl_needed=no ;;
 powerpc-*-darwin*) host_os=darwin ;;
-sparc*-*-openbsd*) host_cpu=sparc host_os=bsd libdl_needed=no ;;
-sparc*-*-freebsd*) host_cpu=sparc host_os=bsd libdl_needed=no ;;
 *) AC_MSG_ERROR($host not supported) ;;
 esac
 
@@ -157,11 +153,10 @@ AC_ARG_ENABLE(runtime-reloc-checks,
 
 AC_ARG_ENABLE(int-inlining,
     [AS_HELP_STRING(--enable-int-inlining,enable inline threaded version of the interpreter
-                   (by default enabled on x86_64, i386, powerpc, mips, arm and aarch64,
+                   (by default enabled on x86_64, i386, powerpc, arm and aarch64,
                     disabled otherwise))],,
     [if test "$host_cpu" = x86_64 -o "$host_cpu" = i386 -o "$host_cpu" = x86 -o \
-             "$host_cpu" = powerpc -o "$host_cpu" = arm -o "$host_cpu" = mips -o \
-             "$host_cpu" = aarch64; then
+             "$host_cpu" = powerpc -o "$host_cpu" = arm -o "$host_cpu" = aarch64; then
          enable_int_inlining=yes
        else
          enable_int_inlining=no
@@ -196,13 +191,6 @@ fi
 
 AC_SUBST(interp_cflags)
 AM_CONDITIONAL(COMPILE_TIME_RELOC_CHECKS, test "$compile_time_reloc_checks" = yes)
-
-AC_ARG_ENABLE(ffi,
-    [AS_HELP_STRING(--enable-ffi,use libffi to call native methods
-                                 (enabled by default on parisc and sparc))],,
-    [if test "$host_cpu" != parisc -a "$host_cpu" != sparc; then
-        enable_ffi=no
-     fi])
 
 AC_ARG_ENABLE(md-stubs,
     [AS_HELP_STRING(--enable-md-stubs,use machine-dependent JNI stubs rather than generic 
@@ -249,25 +237,13 @@ fi
 
 AC_CHECK_LIB(z,inflate,,AC_MSG_ERROR(zlib is missing))
 
-if test "$enable_ffi" != no; then
-    AC_CHECK_LIB(ffi,ffi_call,,AC_MSG_ERROR(libffi is missing))
-fi
-
 dnl Checks for header files.
 AC_HEADER_STDC
 AC_CHECK_HEADERS(sys/time.h unistd.h endian.h sys/param.h locale.h alloca.h fenv.h)
 
 AC_CHECK_HEADER(zlib.h,,AC_MSG_ERROR(zlib.h is missing))
 
-if test "$enable_ffi" != no; then
-    AC_CHECK_HEADER(ffi.h,,AC_MSG_ERROR(ffi.h is missing))
-fi
-
 AC_DEFINE([USE_ZIP],1,[use zip])
-
-if test "$enable_ffi" != no; then
-    AC_DEFINE([USE_FFI],1,[use FFI])
-fi
 
 if test "$enable_md_stubs" != no; then
     AC_DEFINE([USE_MD_STUBS],1,[use machine-dependent JNI stubs])
@@ -355,8 +331,6 @@ AC_CONFIG_FILES(
     src/os/linux/arm/Makefile \
     src/os/linux/i386/Makefile \
     src/os/linux/x86_64/Makefile \
-    src/os/linux/parisc/Makefile \
-    src/os/linux/mips/Makefile \
     src/os/linux/aarch64/Makefile \
     src/os/darwin/i386/Makefile \
     src/os/darwin/x86_64/Makefile \
@@ -366,7 +340,6 @@ AC_CONFIG_FILES(
     src/os/bsd/arm/Makefile \
     src/os/bsd/i386/Makefile \
     src/os/bsd/x86_64/Makefile \
-    src/os/bsd/sparc/Makefile \
     src/classlib/Makefile \
     src/classlib/openjdk/Makefile)
 

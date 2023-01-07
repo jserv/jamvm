@@ -56,13 +56,6 @@ if test "$DIE" -eq 1; then
   exit 1
 fi
 
-if test -z "$*" -a x$NOCONFIGURE = x; then
-  echo "**Warning**: I am going to run \`configure' with no arguments."
-  echo "If you wish to pass any to it, please specify them on the"
-  echo \`$0\'" command line."
-  echo
-fi
-
 echo "Running aclocal $ACLOCAL_FLAGS ..."
 aclocal $ACLOCAL_FLAGS || {
   echo
@@ -86,11 +79,3 @@ automake --add-missing --gnu ||
 
 echo "Running autoconf ..."
 autoconf || { echo "**Error**: autoconf failed."; exit 1; }
-
-if test x$NOCONFIGURE = x; then
-  echo Running $srcdir/configure --enable-maintainer-mode "$@" ...
-  $srcdir/configure --enable-maintainer-mode "$@" \
-  && echo Now type \`make\' to compile JamVM || exit 1
-else
-  echo Skipping configure process.
-fi
