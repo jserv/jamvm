@@ -1,5 +1,5 @@
-# JamVM 2 + OpenJDK
-> The objective of this repository is to incorporate [OpenJDK](https://openjdk.org/) and [JamVM](https://jamvm.sourceforge.net/)..
+# JamVM + OpenJDK
+> The objective of this repository is to incorporate [OpenJDK](https://openjdk.org/) and [JamVM](https://jamvm.sourceforge.net/).
 
 JamVM is an open-source Java Virtual Machine that aims to support the
 latest version of the JVM specification, while at the same time being
@@ -7,9 +7,8 @@ compact and easy to understand.
 
 ## Class Libraries
 
-JamVM must be used in conjunction with a Java class-library to make
-a full Java Runtime Environment along with the class-library from
-OpenJDK.
+JamVM must be used in conjunction with the Java class-library from OpenJDK
+to make a full Java Runtime Environment.
 
 ### OpenJDK
 
@@ -18,8 +17,8 @@ from the open-sourcing of Java in 2007.  It consists of a class-library,
 a virtual machine (HotSpot) and a java compiler (plus other tools).
 
 JamVM is compatible with the class-library from OpenJDK 8. JamVM provides
-a shared library (`libjvm.so`) which can be used to replace the libjvm.so
-containing HotSpot. The existing OpenJDK launcher (java) is used, which
+a shared library (`libjvm.so`) which can be used to replace the `libjvm.so`
+containing HotSpot. The existing OpenJDK launcher (`java`) is used, which
 now runs JamVM.
 
 In addition to HotSpot, OpenJDK also packages and supports alternative
