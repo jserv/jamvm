@@ -1,0 +1,18 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  jamvm:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v3.3.0
+    - name: install-dependencies
+      run: | 
+            sudo apt-get update
+            sudo apt-get install build-essential libz-dev autoconf automake m4 libtool
+    - name: JamVM + OpenJDK
+      run: |
+            .ci/openjdk8.sh
+            .ci/jamvm.sh
+      shell: bash
