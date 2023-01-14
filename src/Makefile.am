@@ -22,7 +22,7 @@
 SUBDIRS = os interp classlib
 DIST_SUBDIRS = os arch interp classlib
 
-include_HEADERS = jni.h
+noinst_HEADERS = jni.h
 
 lib_LTLIBRARIES = libjvm.la
 noinst_LTLIBRARIES = libcore.la
