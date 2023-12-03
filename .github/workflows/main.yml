@@ -6,7 +6,7 @@ jobs:
   jamvm:
     runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v3.3.0
+    - uses: actions/checkout@v4
     - name: install-dependencies
       run: | 
             sudo apt-get update
