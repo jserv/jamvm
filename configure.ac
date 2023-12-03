@@ -205,7 +205,7 @@ AC_ARG_ENABLE(tls,
 
 dnl Initialise libtool
 AC_DISABLE_STATIC
-AC_PROG_LIBTOOL
+LT_INIT
 
 dnl Checks for programs.
 AC_PROG_CC
@@ -229,7 +229,6 @@ fi
 AC_CHECK_LIB(z,inflate,,AC_MSG_ERROR(zlib is missing))
 
 dnl Checks for header files.
-AC_HEADER_STDC
 AC_CHECK_HEADERS(sys/time.h unistd.h endian.h sys/param.h locale.h alloca.h fenv.h)
 
 AC_CHECK_HEADER(zlib.h,,AC_MSG_ERROR(zlib.h is missing))
@@ -244,7 +243,6 @@ fi
 
 dnl Checks for typedefs, structures, and compiler characteristics.
 AC_C_CONST
-AC_HEADER_TIME
 
 dnl Checks for library functions.
 AC_FUNC_ALLOCA
